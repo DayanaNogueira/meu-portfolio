@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO & Meta Tags Essenciais -->
+    <title>Dayana Nogueira - Desenvolvedora Full Stack</title>
+    <meta name="description" content="Portfólio de Dayana Nogueira, uma desenvolvedora Full Stack apaixonada por criar soluções web modernas, eficientes e com foco em IA. Explore meus projetos e competências.">
+    <meta name="author" content="Dayana Nogueira">
+    <meta name="keywords" content="Dayana Nogueira, Desenvolvedora Full Stack, Portfólio, JavaScript, React, Node.js, IA, Gemini API">
+
+    <!-- Open Graph / Facebook / LinkedIn -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Dayana Nogueira - Portfólio de Desenvolvedora Full Stack">
+    <meta property="og:description" content="Explore os projetos, competências e a jornada de uma desenvolvedora apaixonada por tecnologia e IA.">
+    <meta property="og:image" content="https://i.pinimg.com/736x/a2/3a/ba/a23aba81a1999495c8a601ba04d9561a.jpg">
+    <meta property="og:url" content="URL_DO_SEU_SITE_QUANDO_ESTIVER_ONLINE">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="URL_DO_SEU_SITE_QUANDO_ESTIVER_ONLINE">
+    <meta property="twitter:title" content="Dayana Nogueira - Portfólio de Desenvolvedora Full Stack">
+    <meta property="twitter:description" content="Explore os projetos, competências e a jornada de uma desenvolvedora apaixonada por tecnologia e IA.">
+    <meta property="twitter:image" content="https://i.pinimg.com/736x/a2/3a/ba/a23aba81a1999495c8a601ba04d9561a.jpg">
+
+    <link rel="icon" type="image/png" href="https://placehold.co/32x32/1a0a20/a78bfa/png?text=DN&font=poppins">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+    <!-- Script do EmailJS -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+    <style>
+        /* Adicionado scroll-smooth para o comportamento padrão */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #0a0a10;
+            color: #e0e0e0;
+        }
+        
+        /* --- EFEITO DE TRANSIÇÃO DE PÁGINA --- */
+        #page-transition-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: #0a0a10;
+            z-index: 10000; /* Acima de tudo */
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        #page-transition-overlay.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .animated-gradient-background {
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            background: linear-gradient(-45deg, #0a0a10, #1a0a20, #0a1a20, #200a1a);
+            background-size: 400% 400%;
+            animation: gradientAnimation 20s ease infinite;
+        }
+
+        @keyframes gradientAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .navbar-scrolled {
+            background: rgba(16, 16, 26, 0.7);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-link {
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(90deg, #a78bfa, #f472b6);
+            transition: width 0.3s ease-in-out;
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+        
+        .nav-link.active {
+            color: white;
+        }
+
+        .text-gradient {
+            background: linear-gradient(90deg, #a78bfa, #f472b6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, #a78bfa, #f472b6);
+            margin: 8px auto 0;
+            border-radius: 2px;
+        }
+
+        /* --- ANIMAÇÕES REFINADAS E ACESSIBILIDADE --- */
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes zoomIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
+        @keyframes bounce { 0%, 20%, 50%, 80%, 100% {transform: translateY(0);} 40% {transform: translateY(-20px);} 60% {transform: translateY(-10px);} }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, ::before, ::after {
+                animation-delay: -1ms !important;
+                animation-duration: 1ms !important;
+                animation-iteration-count: 1 !important;
+                background-attachment: scroll !important;
+                scroll-behavior: auto !important;
+                transition-duration: 0.01ms !important;
+                transition-delay: 0ms !important;
+            }
+        }
+
+        .home-element { opacity: 0; will-change: transform, opacity; }
+        .animate-zoom-in { animation: zoomIn 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards; }
+        .animate-fade-in-up { animation: fadeInUp 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards; }
+        
+        .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94); will-change: transform, opacity; }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+
+        .scroll-down-indicator { animation: bounce 2s infinite; }
+        
+        /* --- TIMELINE PROFISSIONAL OTIMIZADA --- */
+        .timeline {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 4px;
+            background: linear-gradient(180deg, #a78bfa, #f472b6);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -2px;
+            border-radius: 2px;
+            opacity: 0.3;
+        }
+        .timeline-container {
+            padding: 10px 40px;
+            position: relative;
+            background-color: inherit;
+            width: 50%;
+        }
+        .timeline-container::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            right: -10px;
+            background-color: #0a0a10;
+            border: 4px solid #a78bfa;
+            top: 15px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+        .timeline-left { left: 0; }
+        .timeline-right { left: 50%; }
+        .timeline-right::after { left: -10px; }
+        
+        .timeline-content {
+            padding: 20px 30px;
+            position: relative;
+            border-radius: 8px;
+        }
+        .timeline-content h3 { color: #a78bfa; }
+        .timeline-content .skills-list i { transition: color 0.3s ease; }
+        .timeline-content .skills-list i:hover { color: #f472b6; }
+        
+        .timeline-container .timeline-content, .timeline-container::after {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.6s ease-in-out;
+            transition-delay: calc(var(--i) * 200ms); /* Otimização com CSS variables */
+        }
+        .reveal.visible .timeline-container .timeline-content,
+        .reveal.visible .timeline-container::after {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="overflow-x-hidden">
+
+    <!-- Efeito de Transição de Página -->
+    <div id="page-transition-overlay"></div>
+
+    <div class="animated-gradient-background"></div>
+
+    <nav id="navbar" class="fixed w-full top-0 left-0 z-50 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <div class="flex-shrink-0">
+                     <a href="#home" class="transition-link text-2xl font-bold text-white tracking-wider">D<span class="text-gradient">N</span></a>
+                </div>
+                <div class="hidden md:block">
+                    <div id="desktop-menu" class="ml-10 flex items-baseline space-x-4">
+                        <a href="#home" class="nav-link transition-link text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Home</a>
+                        <a href="#about" class="nav-link transition-link text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">A Minha Jornada</a>
+                        <a href="#projects" class="nav-link transition-link text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Projetos</a>
+                        <a href="#certificates" class="nav-link transition-link text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Certificados</a>
+                        <a href="#contact" class="nav-link transition-link text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Contacto</a>
+                    </div>
+                </div>
+                <div class="-mr-2 flex md:hidden">
+                    <button id="mobile-menu-button" type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none" aria-label="Abrir menu principal">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div id="mobile-menu" class="md:hidden hidden glass-effect">
+             <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 text-center">
+                <a href="#home" class="nav-link transition-link text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Home</a>
+                <a href="#about" class="nav-link transition-link text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium">A Minha Jornada</a>
+                <a href="#projects" class="nav-link transition-link text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Projetos</a>
+                <a href="#certificates" class="nav-link transition-link text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Certificados</a>
+                <a href="#contact" class="nav-link transition-link text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Contacto</a>
+            </div>
+        </div>
+    </nav>
+    
+    <main>
+        <header id="home" class="relative min-h-screen flex items-center justify-center text-center px-4 overflow-hidden pt-20">
+            <div class="max-w-4xl z-10">
+                <img src="https://i.pinimg.com/736x/a2/3a/ba/a23aba81a1999495c8a601ba04d9561a.jpg" alt="Avatar profissional de Dayana Nogueira, desenvolvedora Full Stack." class="home-element w-48 h-48 rounded-full mx-auto mb-8 border-4 border-violet-500 shadow-lg animate-zoom-in object-cover" style="animation-delay: 200ms;">
+                <h1 class="home-element text-4xl md:text-6xl font-bold text-white mb-4 animate-fade-in-up" style="animation-delay: 400ms;">Olá, eu sou Dayana Nogueira</h1>
+                <p class="home-element text-xl md:text-2xl font-light text-gray-300 mb-8 animate-fade-in-up" style="animation-delay: 600ms;">Eu sou <span id="typed-text" class="text-gradient font-semibold"></span></p>
+                <div class="home-element flex justify-center space-x-6 text-3xl animate-fade-in-up" style="animation-delay: 800ms;">
+                    <a href="https://github.com/DayanaNogueira" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-violet-400 transition-all duration-300 transform hover:scale-110" aria-label="Perfil de Dayana Nogueira no GitHub"><i class="fab fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/dayana-nogueira-2744b3363/" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-violet-400 transition-all duration-300 transform hover:scale-110" aria-label="Perfil de Dayana Nogueira no LinkedIn"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+            <a href="#about" class="scroll-down-indicator transition-link absolute bottom-10 text-4xl text-gray-400 hover:text-white transition-colors" aria-label="Rolar para a secção seguinte">
+                <i class="fas fa-chevron-down"></i>
+            </a>
+        </header>
+
+        <section id="about" class="py-20 px-4">
+            <div class="max-w-6xl mx-auto reveal">
+                <h2 class="section-title text-3xl font-bold text-center mb-20">A Minha Jornada</h2>
+                <div class="timeline">
+                    <div class="timeline-container timeline-left" style="--i: 1;">
+                        <div class="timeline-content glass-effect">
+                            <h3 class="text-xl font-bold mb-2">🌟 O Meu Ponto de Partida</h3>
+                            <p class="text-gray-300">Como Desenvolvedora Full Stack, sou movida pela convicção de que a tecnologia é uma força transformadora. A minha paixão é traduzir problemas complexos em soluções digitais elegantes e eficientes, criando desde aplicações web interativas a ferramentas que otimizam processos.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-container timeline-right" style="--i: 2;">
+                        <div class="timeline-content glass-effect">
+                            <h3 class="text-xl font-bold mb-2">🎨 Criando Experiências no Front-End</h3>
+                            <p class="text-gray-300 mb-4">A minha paixão por interfaces intuitivas levou-me a dominar o ecossistema de front-end, focando-me em criar experiências de utilizador memoráveis.</p>
+                            <div class="skills-list flex flex-wrap gap-4 text-3xl text-gray-400">
+                                <i class="fab fa-html5" title="HTML5"></i> <i class="fab fa-css3-alt" title="CSS3"></i> <i class="fab fa-js-square" title="JavaScript"></i> <i class="fab fa-react" title="React"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="timeline-container timeline-left" style="--i: 3;">
+                        <div class="timeline-content glass-effect">
+                            <h3 class="text-xl font-bold mb-2">⚙️ Construindo a Lógica no Back-End</h3>
+                            <p class="text-gray-300 mb-4">Construo a lógica e a robustez por trás das aplicações, garantindo performance, segurança e escalabilidade.</p>
+                             <div class="skills-list flex flex-wrap gap-4 text-3xl text-gray-400">
+                                <i class="fab fa-node-js" title="Node.js"></i> <i class="fab fa-python" title="Python"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="timeline-container timeline-right" style="--i: 4;">
+                        <div class="timeline-content glass-effect">
+                            <h3 class="text-xl font-bold mb-2">🚀 A Jornada Continua</h3>
+                            <p class="text-gray-300">A minha curiosidade vai além do código. Acredito na aprendizagem contínua, explorando novas tecnologias, marketing digital e design de interfaces para trazer uma visão holística a cada projeto.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="py-20 px-4 bg-black bg-opacity-20">
+            <div class="max-w-7xl mx-auto reveal">
+                <h2 class="section-title text-3xl font-bold text-center mb-12">Meu Projeto em Destaque</h2>
+                <div class="grid grid-cols-1 place-items-center gap-8">
+                    <div class="glass-effect rounded-lg overflow-hidden group transform hover:-translate-y-2 transition-all duration-300 shadow-lg hover:shadow-2xl hover:shadow-violet-500/20 max-w-md">
+                        <div class="relative overflow-hidden">
+                           <img src="https://github.com/user-attachments/assets/96742b12-4fde-4c3e-a30b-993a10c376c7" alt="Captura de tela do aplicativo Hub Diário, mostrando a interface principal." class="w-full h-48 object-cover object-top transition-transform duration-500 group-hover:scale-110">
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2">Hub Diário com IA</h3>
+                            <div class="flex justify-between items-center mt-4">
+                                <div class="flex flex-wrap gap-2">
+                                     <span class="text-xs font-semibold bg-violet-500/20 text-violet-300 px-2 py-1 rounded-full">HTML</span>
+                                     <span class="text-xs font-semibold bg-pink-500/20 text-pink-300 px-2 py-1 rounded-full">Tailwind</span>
+                                     <span class="text-xs font-semibold bg-yellow-500/20 text-yellow-300 px-2 py-1 rounded-full">JavaScript</span>
+                                </div>
+                                <a href="https://github.com/DayanaNogueira/lista-de-tarefas" target="_blank" rel="noopener noreferrer" class="text-2xl text-gray-400 hover:text-white transition-colors" aria-label="Ver código do projeto no GitHub"><i class="fab fa-github"></i></a>
+                            </div>
+                            <p class="text-gray-400 my-4 text-sm">Um organizador pessoal com gestão de tarefas, compras e notas, potenciado pela API Gemini da Google.</p>
+                            <!-- Lembre-se de substituir este link quando o projeto estiver online -->
+                            <a href="#" target="_blank" rel="noopener noreferrer" class="inline-block mt-2 bg-violet-600 text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-violet-700 transition-colors">
+                                Ver Projeto ao Vivo <i class="fas fa-external-link-alt text-xs ml-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="certificates" class="py-20 px-4 bg-black bg-opacity-20">
+            <div class="max-w-7xl mx-auto reveal">
+                <h2 class="section-title text-3xl font-bold text-center mb-12">Formação & Certificados</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="glass-effect p-6 rounded-lg border border-transparent">
+                        <h3 class="text-2xl font-bold mb-6 text-center text-gradient">Em Andamento</h3>
+                        <div class="space-y-6">
+                            <div>
+                                <div class="flex justify-between items-center mb-1">
+                                    <h4 class="font-semibold">Superior em Análise e Desenvolvimento de Sistemas</h4>
+                                    <span class="text-violet-300 text-sm font-medium">20%</span>
+                                </div>
+                                <div class="w-full bg-gray-700 rounded-full h-2.5">
+                                    <div class="bg-violet-500 h-2.5 rounded-full" style="width: 20%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between items-center mb-1">
+                                    <h4 class="font-semibold">Desenvolvedor Full-Stack</h4>
+                                    <span class="text-pink-300 text-sm font-medium">10%</span>
+                                </div>
+                                <div class="w-full bg-gray-700 rounded-full h-2.5">
+                                    <div class="bg-pink-500 h-2.5 rounded-full" style="width: 10%"></div>
+                                </div>
+                                <p class="text-gray-400 text-sm mt-1">FreeCodeCamp</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="glass-effect p-6 rounded-lg border border-transparent">
+                        <h3 class="text-2xl font-bold mb-6 text-center text-gradient">Concluídos</h3>
+                        <div class="space-y-4">
+                            <div class="bg-gray-900/50 p-4 rounded-lg flex items-center justify-between hover:bg-gray-800/60 transition-colors">
+                                <div>
+                                    <h4 class="font-semibold">Introdução ao Desenvolvimento Front-End</h4>
+                                    <p class="text-gray-400 text-sm">Digital Innovation One</p>
+                                </div>
+                                <a href="https://github.com/user-attachments/assets/8449bd17-32ad-4394-bb12-08d7afe38585" target="_blank" rel="noopener noreferrer" class="text-violet-400 hover:underline font-semibold text-sm">Ver <i class="fas fa-external-link-alt text-xs ml-1"></i></a>
+                            </div>
+                            <div class="bg-gray-900/50 p-4 rounded-lg flex items-center justify-between hover:bg-gray-800/60 transition-colors">
+                                <div>
+                                    <h4 class="font-semibold">Entendendo Comunicação Client x Server</h4>
+                                    <p class="text-gray-400 text-sm">Digital Innovation One</p>
+                                </div>
+                                <a href="https://github.com/user-attachments/assets/0761fc3d-63ee-41ce-b070-a705d77d0671" target="_blank" rel="noopener noreferrer" class="text-violet-400 hover:underline font-semibold text-sm">Ver <i class="fas fa-external-link-alt text-xs ml-1"></i></a>
+                            </div>
+                            <div class="bg-gray-900/50 p-4 rounded-lg flex items-center justify-between hover:bg-gray-800/60 transition-colors">
+                                <div>
+                                    <h4 class="font-semibold">General English - CEFR Level A1</h4>
+                                    <p class="text-gray-400 text-sm">EF Education First</p>
+                                </div>
+                                <a href="https://github.com/user-attachments/assets/61ca4da4-feb1-47f8-9bc9-642782fb7ebd" target="_blank" rel="noopener noreferrer" class="text-violet-400 hover:underline font-semibold text-sm">Ver <i class="fas fa-external-link-alt text-xs ml-1"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Ocultado temporariamente -->
+        <!-- <section id="articles" class="py-20 px-4"> ... </section> -->
+        
+        <section id="contact" class="py-20 px-4 text-center">
+            <div class="max-w-4xl mx-auto reveal">
+                <h2 class="section-title text-3xl font-bold mb-4">Vamos Construir Algo Incrível?</h2>
+                <p class="text-lg text-gray-300 mb-8">Tenho paixão por novos desafios e estou sempre aberta a oportunidades de colaboração. Se tem uma ideia ou um projeto em mente, adoraria conversar.</p>
+                <form id="contact-form" class="mt-8 grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8">
+                    <input type="text" name="from_name" id="from_name" required autocomplete="name" placeholder="Seu Nome" class="py-3 px-4 block w-full shadow-sm glass-effect rounded-md focus:ring-violet-500 focus:border-violet-500 border-gray-700">
+                    <input type="email" name="from_email" id="from_email" required autocomplete="email" placeholder="Seu Email" class="py-3 px-4 block w-full shadow-sm glass-effect rounded-md focus:ring-violet-500 focus:border-violet-500 border-gray-700">
+                    <div class="sm:col-span-2">
+                        <textarea id="message" name="message" rows="4" required placeholder="Sua Mensagem" class="py-3 px-4 block w-full shadow-sm glass-effect rounded-md focus:ring-violet-500 focus:border-violet-500 border-gray-700"></textarea>
+                    </div>
+                    <div class="sm:col-span-2">
+                          <button type="submit" id="submit-button" class="w-full inline-flex items-center justify-center px-6 py-3 border border-transparent rounded-full shadow-sm text-base font-medium text-white bg-gradient-to-r from-violet-600 to-pink-500 hover:scale-105 transform transition-transform duration-300">
+                                Enviar Mensagem
+                           </button>
+                    </div>
+                </form>
+                    <p id="form-status" class="mt-4 text-lg"></p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="py-8 px-4 text-center text-gray-400" role="contentinfo">
+        <div class="flex justify-center space-x-6 text-2xl mb-4">
+            <a href="https://github.com/DayanaNogueira" target="_blank" rel="noopener noreferrer" class="hover:text-violet-400 transition-colors" aria-label="Perfil de Dayana Nogueira no GitHub"><i class="fab fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/dayana-nogueira-2744b3363/" target="_blank" rel="noopener noreferrer" class="hover:text-violet-400 transition-colors" aria-label="Perfil de Dayana Nogueira no LinkedIn"><i class="fab fa-linkedin"></i></a>
+        </div>
+        <p>&copy; 2025 Dayana Nogueira. Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // --- CONFIGURAÇÃO DO EMAILJS ---
+            const EMAILJS_SERVICE_ID = 'COLE_O_SEU_SERVICE_ID_AQUI';
+            const EMAILJS_TEMPLATE_ID = 'COLE_O_SEU_TEMPLATE_ID_AQUI';
+            const EMAILJS_PUBLIC_KEY = 'COLE_A_SUA_PUBLIC_KEY_AQUI';
+
+            const contactForm = document.getElementById('contact-form');
+            const submitButton = document.getElementById('submit-button');
+            const formStatus = document.getElementById('form-status');
+
+            const isEmailJsConfigured = EMAILJS_PUBLIC_KEY && !EMAILJS_PUBLIC_KEY.includes('COLE_A_SUA');
+
+            if (isEmailJsConfigured) {
+                try {
+                    emailjs.init(EMAILJS_PUBLIC_KEY);
+                } catch (error) {
+                    console.error("Falha ao inicializar o EmailJS. Verifique a sua Public Key.", error);
+                }
+            }
+
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+
+                    submitButton.disabled = true;
+                    submitButton.innerText = 'A Enviar...';
+
+                    emailjs.sendForm(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, this)
+                        .then(() => {
+                            formStatus.innerText = 'Mensagem enviada com sucesso!';
+                            formStatus.style.color = '#34d399'; // Verde
+                            contactForm.reset();
+                        }, (error) => {
+                            formStatus.innerText = 'Ocorreu um erro. Tente novamente.';
+                            formStatus.style.color = '#f87171'; // Vermelho
+                            console.error('EmailJS Error:', error);
+                        })
+                        .finally(() => {
+                            submitButton.disabled = false;
+                            submitButton.innerText = 'Enviar Mensagem';
+                            setTimeout(() => formStatus.innerText = '', 5000);
+                        });
+                });
+            }
+
+            // LÓGICA DE TRANSIÇÃO E ATIVAÇÃO DE LINKS REFINADA
+            const transitionLinks = document.querySelectorAll('.transition-link');
+            const mobileMenu = document.getElementById('mobile-menu');
+
+            transitionLinks.forEach(link => {
+                link.addEventListener('click', function (e) {
+                    const targetId = this.getAttribute('href');
+                    if (!targetId.startsWith('#') || targetId.length <= 1) return;
+
+                    e.preventDefault();
+                    const targetElement = document.querySelector(targetId);
+                    if (!targetElement) return;
+
+                    // Usa a função de rolagem suave nativa
+                    window.scrollTo({
+                        top: targetElement.offsetTop,
+                        behavior: 'smooth'
+                    });
+
+                    // Oculta o menu mobile após o clique
+                    if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                });
+            });
+
+            // Lógica para o texto que digita
+            new Typed('#typed-text', {
+                strings: ['Desenvolvedora Full-Stack', 'Entusiasta de IA', 'Criadora de Soluções Web', 'Amante de Código Limpo'],
+                typeSpeed: 70, backSpeed: 40, loop: true, backDelay: 1500,
+            });
+
+            const revealElements = document.querySelectorAll('.reveal');
+            const revealObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) entry.target.classList.add('visible');
+                });
+            }, { threshold: 0.15 });
+            revealElements.forEach(el => revealObserver.observe(el));
+            
+            const navbar = document.getElementById('navbar');
+            window.addEventListener('scroll', () => {
+                navbar.classList.toggle('navbar-scrolled', window.scrollY > 50);
+            });
+
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            mobileMenuButton.addEventListener('click', () => {
+                if (mobileMenu) {
+                    mobileMenu.classList.toggle('hidden');
+                }
+            });
+
+            const sections = document.querySelectorAll('section, header');
+            const navLinks = document.querySelectorAll('#desktop-menu a.nav-link');
+            const sectionObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) { 
+                        const id = entry.target.getAttribute('id');
+                        setTimeout(() => {
+                            navLinks.forEach(link => {
+                                link.classList.remove('active');
+                                const linkHref = link.getAttribute('href');
+                                if (linkHref === `#${id}`) {
+                                    link.classList.add('active');
+                                }
+                            });
+                        }, 100);
+                    }
+                });
+            }, { root: null, rootMargin: '0px', threshold: 0.6 });
+            sections.forEach(section => sectionObserver.observe(section));
+        });
+    </script>
+</body>
+</html>
