@@ -226,6 +226,29 @@
             opacity: 1;
             transform: translateY(0);
         }
+        /* --- AJUSTE RESPONSIVO DA TIMELINE --- */
+        @media (max-width: 767px) {
+          .timeline::after {
+            left: 20px;
+          }
+
+          .timeline-container {
+            width: 100%;
+            padding-left: 50px;
+            padding-right: 25px;
+          }
+
+          .timeline-container::after {
+            left: 20px;
+            right: auto;
+          }
+
+          .timeline-left, 
+          .timeline-right {
+            left: 0;
+          }
+        }
+
     </style>
 </head>
 <body class="overflow-x-hidden">
