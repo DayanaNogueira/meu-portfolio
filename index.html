@@ -2,7 +2,7 @@
 <html lang="pt-BR" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-sçale=1.0">
     
     <!-- SEO & Meta Tags Essenciais -->
     <title>Dayana Nogueira - Desenvolvedora Full Stack</title>
@@ -64,6 +64,7 @@
             pointer-events: all;
         }
 
+        /* Fundo Animado e Texturizado (Melhoria Sênior) */
         .animated-gradient-background {
             width: 100%;
             height: 100%;
@@ -74,6 +75,26 @@
             background: linear-gradient(-45deg, #0a0a10, #1a0a20, #0a1a20, #200a1a);
             background-size: 400% 400%;
             animation: gradientAnimation 20s ease infinite;
+        }
+
+        /* Nova camada de textura (grão/ruído) para profundidade visual */
+        .grain-overlay::before {
+            content: '';
+            position: fixed;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAMAAAAp4XiDAAAAUVBMVEWFhYWFhYSEhISFhYWQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJB4k3/xAAAAI3RSTlMAAAAAAAABg4SFhoeIiYqLjI2Oj5CSlJWWl5iZmp+goaKjpKWmnzV9XwAAAFdJREFUSM+1kUFOwDAIQ+c/kQG+Vf8XJc4H9gL7hF2B9v+Ew+07N04lJ4Y3K00/wAJK39XWJ1YxYf1r+Y/4A/s/uA3+1vL1vj+p6w8K92hQAAAAASUVORK5CYII=');
+            background-repeat: repeat;
+            opacity: 0.05; /* Ajuste a opacidade para um efeito sutil */
+            animation: noiseAnimation 1s steps(2) infinite;
+            pointer-events: none;
+            z-index: 1; /* Acima do degradê, abaixo do conteúdo */
+        }
+        @keyframes noiseAnimation {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(-50%, -50%); }
         }
 
         @keyframes gradientAnimation {
@@ -161,8 +182,30 @@
         .animate-zoom-in { animation: zoomIn 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards; }
         .animate-fade-in-up { animation: fadeInUp 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards; }
         
-        .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94); will-change: transform, opacity; }
-        .reveal.visible { opacity: 1; transform: translateY(0); }
+        /* OTIMIZAÇÃO: Transições mais fluidas para as seções */
+        .reveal { 
+            opacity: 0; 
+            transform: translateY(40px); 
+            transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94); 
+            will-change: transform, opacity; 
+        }
+        .reveal.visible { 
+            opacity: 1; 
+            transform: translateY(0); 
+        }
+
+        /* EFEITO CASCATA OTIMIZADO: Transição individual com atraso */
+        .card-reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transition-delay: calc(var(--i) * 100ms);
+        }
+
+        .card-reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
 
         .scroll-down-indicator { animation: bounce 2s infinite; }
         
@@ -256,7 +299,9 @@
     <!-- Efeito de Transição de Página -->
     <div id="page-transition-overlay"></div>
 
+    <!-- Nova camada de Fundo com Degradê e Grão -->
     <div class="animated-gradient-background"></div>
+    <div class="grain-overlay"></div>
 
     <nav id="navbar" class="fixed w-full top-0 left-0 z-50 transition-all duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -353,7 +398,7 @@
        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 place-items-center gap-8">
 
             <!-- Projeto Hub Diário -->
-            <div class="glass-effect rounded-lg overflow-hidden group transform hover:-translate-y-2 transition-all duration-300 shadow-lg hover:shadow-2xl hover:shadow-violet-500/20 max-w-md flex flex-col h-full reveal" style="--i: 1;">
+            <div class="glass-effect rounded-lg overflow-hidden group transform hover:-translate-y-2 transition-all duration-300 shadow-lg hover:shadow-2xl hover:shadow-violet-500/20 max-w-md flex flex-col h-full card-reveal" style="--i: 1;">
                 <div class="relative overflow-hidden flex-shrink-0">
                    <img src="https://github.com/user-attachments/assets/96742b12-4fde-4c3e-a30b-993a10c376c7" alt="Captura de tela do aplicativo Hub Diário, mostrando a interface principal." class="w-full h-48 object-cover object-top transition-transform duration-500 group-hover:scale-110">
                 </div>
@@ -377,7 +422,7 @@
             </div>
 
             <!-- Projeto CineInfo (agora como card separado, mesmo padrão do Hub Diário) -->
-            <div class="glass-effect rounded-lg overflow-hidden group transform hover:-translate-y-2 transition-all duration-300 shadow-lg hover:shadow-2xl hover:shadow-violet-500/20 max-w-md flex flex-col h-full reveal" style="--i: 2;">
+            <div class="glass-effect rounded-lg overflow-hidden group transform hover:-translate-y-2 transition-all duration-300 shadow-lg hover:shadow-2xl hover:shadow-violet-500/20 max-w-md flex flex-col h-full card-reveal" style="--i: 2;">
                 <div class="relative overflow-hidden flex-shrink-0">
                     <img src="https://github.com/DayanaNogueira/meu-portfolio/blob/main/certificados/Captura%20de%20tela%202025-09-17%20224634.png?raw=true" alt="Captura de tela do aplicativo CineInfo, mostrando a grade de filmes." class="w-full h-48 object-cover object-top transition-transform duration-500 group-hover:scale-110">
                 </div>
@@ -412,7 +457,7 @@
                 <h2 class="section-title text-3xl font-bold text-center mb-12">Artigos & Publicações</h2>
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 place-items-center gap-8">
                     <!-- Card do Artigo do Medium -->
-                    <a href="https://medium.com/@nogueira.dayana08/transformando-o-código-em-magia-como-apis-de-ia-elevam-a-experiência-do-usuário-e-o-seu-hub-3eae8f8e4330" target="_blank" rel="noopener noreferrer" class="glass-effect rounded-lg overflow-hidden group transform hover:-translate-y-2 transition-all duration-300 shadow-lg hover:shadow-2xl hover:shadow-violet-500/20 max-w-md block reveal" style="--i: 3;">
+                    <a href="https://medium.com/@nogueira.dayana08/transformando-o-código-em-magia-como-apis-de-ia-elevam-a-experiência-do-usuário-e-o-seu-hub-3eae8f8e4330" target="_blank" rel="noopener noreferrer" class="glass-effect rounded-lg overflow-hidden group transform hover:-translate-y-2 transition-all duration-300 shadow-lg hover:shadow-2xl hover:shadow-violet-500/20 max-w-md block card-reveal" style="--i: 3;">
                         <div class="relative overflow-hidden">
                             <img src="https://placehold.co/400x250/111827/ffffff?text=IA+%26+Dev" alt="Imagem que representa a fusão entre IA e desenvolvimento web." class="w-full h-48 object-cover object-center transition-transform duration-500 group-hover:scale-110">
                         </div>
@@ -438,7 +483,7 @@
             <div class="max-w-7xl mx-auto reveal">
                 <h2 class="section-title text-3xl font-bold text-center mb-12">Formação & Certificados</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div class="glass-effect p-6 rounded-lg border border-transparent reveal" style="--i: 4;">
+                    <div class="glass-effect p-6 rounded-lg border border-transparent reveal card-reveal" style="--i: 4;">
                         <h3 class="text-2xl font-bold mb-6 text-center text-gradient">Em Andamento</h3>
                         <div class="space-y-6">
                             <div>
@@ -462,7 +507,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="glass-effect p-6 rounded-lg border border-transparent reveal" style="--i: 5;">
+                    <div class="glass-effect p-6 rounded-lg border border-transparent reveal card-reveal" style="--i: 5;">
                         <h3 class="text-2xl font-bold mb-6 text-center text-gradient">Concluídos</h3>
                         <div class="space-y-4">
                             <div class="bg-gray-900/50 p-4 rounded-lg flex items-center justify-between hover:bg-gray-800/60 transition-colors">
@@ -602,14 +647,21 @@
                 typeSpeed: 70, backSpeed: 40, loop: true, backDelay: 1500,
             });
 
-            const revealElements = document.querySelectorAll('.reveal');
             const revealObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
-                    if (entry.isIntersecting) entry.target.classList.add('visible');
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
                 });
             }, { threshold: 0.15 });
-            revealElements.forEach(el => revealObserver.observe(el));
-            
+
+            // Seletores para os elementos que terão o efeito de revelação
+            const sectionsToReveal = document.querySelectorAll('.reveal');
+            sectionsToReveal.forEach(section => revealObserver.observe(section));
+
+            const cardsToReveal = document.querySelectorAll('.card-reveal');
+            cardsToReveal.forEach(card => revealObserver.observe(card));
+
             const navbar = document.getElementById('navbar');
             window.addEventListener('scroll', () => {
                 navbar.classList.toggle('navbar-scrolled', window.scrollY > 50);
